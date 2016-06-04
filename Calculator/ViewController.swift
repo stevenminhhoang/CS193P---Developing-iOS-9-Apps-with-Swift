@@ -14,16 +14,24 @@ class ViewController: UIViewController {
     
     private var userIsInTheMiddleOfTyping = false
     
+    //private var userIsInTheMiddleOfFloatingPointNumber = false
+    
     @IBAction private func touchDigit(sender: UIButton) {
         let digit = sender.currentTitle!
+//        if (digit == "." && display.text!.rangeOfString(".") == nil && userIsInTheMiddleOfTyping) {
+//            display.text = display.text! + "."
+//        }
         if userIsInTheMiddleOfTyping {
-            let textInDisplay = display.text!
-            display.text = textInDisplay + digit
-            
+            if (digit == "." && display.text!.rangeOfString(".") != nil) {
+                return
+            } else {
+                let textInDisplay = display.text!
+                display.text = textInDisplay + digit
+            }
         } else {
             display.text = digit
+            userIsInTheMiddleOfTyping = true
         }
-        userIsInTheMiddleOfTyping = true
     }
     
     private var displayValue: Double {
@@ -48,5 +56,9 @@ class ViewController: UIViewController {
         displayValue = brain.result
     }
     
+    @IBAction func clearEverything(sender: UIButton) {
+        display.text! = "0"
+        brain = CalculatorBrain()
+    }
 }
 
