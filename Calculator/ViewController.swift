@@ -18,9 +18,6 @@ class ViewController: UIViewController {
     
     @IBAction private func touchDigit(sender: UIButton) {
         let digit = sender.currentTitle!
-//        if (digit == "." && display.text!.rangeOfString(".") == nil && userIsInTheMiddleOfTyping) {
-//            display.text = display.text! + "."
-//        }
         if userIsInTheMiddleOfTyping {
             if (digit == "." && display.text!.rangeOfString(".") != nil) {
                 return
